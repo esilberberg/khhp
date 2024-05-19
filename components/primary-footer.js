@@ -8,7 +8,7 @@ const footerContent = `
     <a  href="https://www.facebook.com/KYHispanicHeritageProject" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-facebook"></i></a>
 </div>
 <p>KYHispanicHeritageProject@gmail.com</p>
-<p>Copyright &#169; 2023-2024 | Site by <a href="https://github.com/esilberberg" target="_blank" rel="noopener noreferrer">esilberberg</a></p>
+<p>All rights reserved KHHP &#169; 2023-2024 | Site by <a href="https://github.com/esilberberg" target="_blank" rel="noopener noreferrer">esilberberg</a></p>
 </div>
 `
 

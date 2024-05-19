@@ -1,17 +1,27 @@
 const khhp = 'https://khhp.createuky.net/wp-json/wp/v2/posts?_embed';
 
 async function getBlogPosts(apiEndpoint) {
+    const loader = document.getElementById('blog-loader');
+    const display = document.getElementById('blog-display');
+
     try {
+        // Show the loader
+        loader.style.display = 'block';
+        
         const response = await fetch(apiEndpoint);
         if (!response.ok) {
             throw new Error('Network connection error');
         }
         const data = await response.json();
-        displayBlogPosts(data.splice(0,4));
-        
+        displayBlogPosts(data.splice(0, 4));
+
     } catch (error) {
         console.error('Error fetching data:', error);
         return null;
+
+    } finally {
+        // Hide the loader
+        loader.style.display = 'none';
     }
 }
 
@@ -56,4 +66,6 @@ function displayBlogPosts(data) {
     });
 }
 
-getBlogPosts(khhp);
+document.addEventListener("DOMContentLoaded", function() {
+    getBlogPosts(khhp);
+});
