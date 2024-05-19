@@ -16,71 +16,35 @@
     <title>Kentucky Hispanic Heritage Project</title>
 </head>
 <body>
-    <header>
-        <div class="header-wrapper">
-            <div class="toggle-languages">
-                <p><span class="lang-btn"><a href="#">ES</a></span> / <span class="lang-btn"><a href="#">EN</a></span></p>
-            </div>
-            <nav class="top-navigation">
-                <a href="index.html" class="nav-logo"><img src="media/khhp-logo.png" alt="KHHP logo" class="nav-logo-img"></a>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Explore Sources</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Explore Stories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Help</a>
-                    </li>
-                </ul>
-                <div class="top-navigation-hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+    
+    <header id="primary-header"></header>
+    
     <main>
-        <div class="main-wrapper">
-            <section class="homepage-about">
-                <h1>WELCOME TO THE KENTUCKY HISPANIC HERITAGE PROJECT</h1>
-                <p>The Kentucky Hispanic Heritage Project presents multimodal and multimedia data in a user-friendly interface that allows visitors to browse content as well as locate specific data efficiently. The collection encompasses qualitative and quantitative data, academic research, news and press coverage, oral history interviews, community organization information, original creative works, cultural events, and relevant public/private initiatives. We invite you to explore the collection by source type or topic.</p>
-            </section>
-            <section class="homepage-search">
-                <h2>Explore the collection</h2>
-                <div class="homepage-search-widget">
-                    <input id="homepage-search-input" autocomplete="off" type="text"  placeholder="Search...">
-                    <button id="homepage-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <section class="homepage-welcome">
+            <div class="homepage-welcome-content">
+                <p>Welcome to the Kentucky Hispanic Heritage Project, a digital space dedicated to the history, culture, achievements, and contemporary experience of people of Hispanic descent living in Kentucky.</p>
+                <div class="homepage-search">
+                    <h2>Search sources</h2>
+                    <div class="homepage-search-widget">
+                        <input id="homepage-search-input" autocomplete="off" type="text"  placeholder="Search...">
+                        <button id="homepage-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
                 </div>
-            </section>
-            <section class="homepage-blog">
-                <div class="homepage-blog-wrapper">
-                    <h2>KHHP Blog</h2>
-                    <div id="blog-display"></div>
-                    <p class="read-more"><a href="https://khhp.createuky.net/recent-posts/" target="_blank" rel="noopener noreferrer">Read more <i class="fa-solid fa-arrow-right-long"></i></a></p>
-                </div>
-            </section>
+            </div>
+        </section>
+        <section class="homepage-blog">
+            <div class="homepage-blog-content">
+                <div id="blog-display"></div>
+                <p class="read-more"><a href="https://khhp.createuky.net/recent-posts/" target="_blank" rel="noopener noreferrer">Read more <i class="fa-solid fa-arrow-right-long"></i></a></p>
+            </div>
+        </section>
         </div>
     </main>
-    <footer class="primary-footer">
-        <div class="primary-footer-wrapper">
-            <img src="media/khhp-logo-white.png" alt="Kentuck Hispanic Heritage Project">
-            <div class="footer-socials">
-                <a href="https://www.instagram.com/kyhispanicheritageproject/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-instagram"></i></a>
-                <a  href="https://www.facebook.com/KYHispanicHeritageProject" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-facebook"></i></a>
-            </div>
-            <p>info@khhp.org</p>
-            <p>Copyright &#169; 2023-2024 | Site by <a href="https://github.com/esilberberg" target="_blank" rel="noopener noreferrer">esilberberg</a></p>
-        </div>
-    </footer>
-    <script src="scripts/wp-blog-api.js"></script>
+
+    <footer id="primary-footer"></footer>
+
+    <script src="components/primary-header.js"></script>
+    <script src="components/primary-footer.js"></script>
+    <script src="apps/wp-blog-api.js"></script>
 </body>
 </html>
