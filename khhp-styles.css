@@ -484,11 +484,13 @@ input:focus {
     border: none; 
     cursor: pointer;
     width: 50px;
+    transition: 0.2s ease-out;
 }
 
 .sources-search-widget button i {
     display: inline-block;
     vertical-align: middle;
+    font-size: 20px;
 }
 
 .sources-search-widget button:hover {
