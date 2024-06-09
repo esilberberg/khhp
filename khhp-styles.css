@@ -116,7 +116,7 @@ header {
    .nav-menu{
       position: fixed;
       left: -100%;
-      top: 80px;
+      top: 73px;
       gap: 0;
       flex-direction: column;
       background-color: var(--jade);
@@ -536,9 +536,14 @@ input:focus {
     font-size: 1.5rem;
 }
 
-.source-row-panel{
-    display: none;
+.source-row-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.source-row-panel-content {
     padding: 1rem;
 }
 
@@ -546,12 +551,21 @@ input:focus {
     background-color: var(--highlight);
   }
 
+.source-element {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+.source-element-tag {
+    text-decoration: underline;
+}
+
 .source-url {
     background-color: var(--jade);
     width: fit-content;
     padding: 2px 5px;
     border-radius: 5px;
-    border: 1px solid gray;
+    border: 1px solid var(--navy);
     transition: 0.2s ease-out;
 }
 
