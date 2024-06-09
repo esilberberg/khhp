@@ -27,18 +27,73 @@
         <section class="sources-search-widget">
             <select name="formats" id="formats">
                 <option value="all">All</option>
-                <option value="news">News</option>
-                <option value="data">Data</option>
-                <option value="scholarship">Scholarship</option>
+                <option value="audio">Audio</option>
+                <option value="event">Event</option>
+                <option value="journalism">Journalism</option>
+                <option value="report">Report</option>
+                <option value="research">Research</option>       
+                <option value="website">Website</option>
             </select>
             <input id="sources-search-input" autocomplete="off" type="text"  placeholder="Search...">
             <button id="sources-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </section>
+
+        <section id="sources">
+            <div id="sources-display">
+
+            <p id="search-summary">Your search returned 2 results</p>
+            <div class="source-row-accordion">
+                <div class="source-type-icon"><i class="fa-regular fa-newspaper"></i></div>
+                <div class="source-title">Nuestro Kentucky - A Voice for the People</div>
+                <div class="source-year">(2005)</div>
+            </div>
+            <div class="source-row-panel">
+                <div class="source-row-panel-content">
+                    <div class="source-author">Alcalá, Pablo</div>
+                    <div class="source-type">
+                        <div class="source-type-eng">Journalism</div>
+                        <div class="source-type-esp">Periodismo</div>
+                    </div>
+                    <div class="source-subjects">
+                        <div class="source-subjects-eng">Photography, News, Media outlet, Lexington</div>
+                        <div class="source-subjects-esp">Fotografía, Medios</div>
+                    </div>
+                    <div class="source-language"></div>
+                    <div class="source-citation"></div>
+                    <div class="source-url"><a href="#" target="_blank" rel="noopener noreferrer">View Source</a></div>
+                </div>
+            </div>
+            <div class="source-row-accordion">
+                <div class="source-type-icon"><i class="fa-regular fa-newspaper"></i></div>
+                <div class="source-title">Nuestro Kentucky - A Voice for the People</div>
+                <div class="source-year">(2005)</div>
+            </div>
+            <div class="source-row-panel">
+                <div class="source-row-panel-content">
+                    <div class="source-author">Alcalá, Pablo</div>
+                    <div class="source-type">
+                        <div class="source-type-eng">Journalism</div>
+                        <div class="source-type-esp">Periodismo</div>
+                    </div>
+                    <div class="source-subjects">
+                        <div class="source-subjects-eng">Photography, News, Media outlet, Lexington</div>
+                        <div class="source-subjects-esp">Fotografía, Medios</div>
+                    </div>
+                    <div class="source-language"></div>
+                    <div class="source-citation"></div>
+                    <div class="source-url"><a href="#" target="_blank" rel="noopener noreferrer">View Source</a></div>
+                </div>
+            </div>
+
+            </div>
         </section>
   
       
     </main>
 
     <footer id="primary-footer"></footer>
+
+    <script src="components/source-accordion.js"></script>
 
     <script src="components/primary-header.js"></script>
     <script src="components/primary-footer.js"></script>
