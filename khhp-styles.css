@@ -218,7 +218,7 @@ input:focus {
     padding: 0 1rem;
 }
 
-#blog-display {
+.homepage-blog-content #blog-display {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
@@ -226,7 +226,7 @@ input:focus {
     box-sizing: border-box;
 }
 
-.blog-card {
+.homepage-blog-content .blog-card {
     width: calc(25% - 50px);
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -236,20 +236,20 @@ input:focus {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.blog-card:hover {
+.homepage-blog-content .blog-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 
 @media (max-width: 1200px) {
-    .blog-card {
+    .homepage-blog-content .blog-card {
         width: calc(50% - 50px); /* Adjust the width for 2 cards in a row */
     }
 }
 
 @media (max-width: 600px) {
-    .blog-card {
+    .homepage-blog-content .blog-card {
         width: calc(100% - 50px); /* Adjust the width for 1 card in a row */
     }
 }
@@ -578,6 +578,88 @@ input:focus {
     color: white;
     text-decoration: none;
 }
+
+/* STORIES */
+.stories {
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    gap: 70px;
+    max-width: 1000px;
+}
+
+.story-content {
+    flex: 1;
+    width: 50%;
+}
+
+@media (max-width: 900px) {
+    .stories {
+        flex-direction: column;
+    }
+    .story-content {
+        width: 100%;
+    }
+}
+
+.story-content-heading {
+    margin-bottom: 2rem;
+    color: black;
+    text-align: center;
+}
+
+.history-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.history-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.history-card a {
+    text-decoration: none;
+    color: black;
+}
+
+.history-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.history-summary {
+    font-size: 14px;
+    font-weight: 200;
+    margin-bottom: 1rem;
+}
+
+.stories #blog-display {
+    display: block;
+}
+
+.stories .blog-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stories .blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 
 
 /* PRIMARY FOOTER */

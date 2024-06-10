@@ -23,10 +23,26 @@
         <section class="page-heading">
             <h1>Stories</h1>
         </section>
-      
+        <section class="stories">
+            <div class="story-content">
+                <h2 class="story-content-heading"><i class="fa-solid fa-microphone-lines"></i> Oral Histories</h2>
+                <div id="oral-histories-display"></div>
+            </div>
+            <div class="story-content">
+                <h2 class="story-content-heading"><i class="fa-solid fa-square-rss"></i> Recent Blog Posts</h2>
+                <div id="blog-display">
+                    <div class="blog-loader" id="blog-loader"></div>
+                </div>
+            </div>
+        </section>
     </main>
 
+   
+
     <footer id="primary-footer"></footer>
+
+    <script src="components/oral-histories.js"></script>
+    <script src="apps/wp-blog-api.js"></script>
 
     <script src="components/primary-header.js"></script>
     <script src="components/primary-footer.js"></script>
