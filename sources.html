@@ -25,67 +25,37 @@
             <h2>Search our collection of materials</h2>
         </section>
         <section class="sources-search-widget">
-            <select name="formats" id="formats">
-                <option value="all">All</option>
-                <option value="audio">Audio</option>
-                <option value="event">Event</option>
-                <option value="journalism">Journalism</option>
-                <option value="report">Report</option>
-                <option value="research">Research</option>       
-                <option value="website">Website</option>
+            <select name="format" id="format-selector" title="Select Format">
+                <option value="0">All</option>
+                <option value="1">Audio</option>
+                <option value="2">Event</option>
+                <option value="3">Images</option>
+                <option value="4">Journalism</option>
+                <option value="5">Report</option>
+                <option value="6">Research</option>
+                <option value="7">Video</option>       
+                <option value="8">Website</option>
             </select>
             <input id="sources-search-input" autocomplete="off" type="text"  placeholder="Search...">
             <button id="sources-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button id="refresh-btn" title="Refresh"><i class="fa-solid fa-rotate-left"></i></button>
         </section>
 
         <section id="sources">
-            <div id="sources-display">
-
-            <p id="search-summary">Your search returned 2 results</p>
-            <div class="source-row-accordion">
-                <div class="source-type-icon"><i class="fa-regular fa-newspaper"></i></div>
-                <div class="source-title">Nuestro Kentucky - A Voice for the People</div>
-                <div class="source-year">(2005)</div>
-            </div>
-            <div class="source-row-panel">
-                <div class="source-row-panel-content">
-                    <div class="source-element">
-                        <span class="source-element-tag">Creator:</span>
-                        <span class="source-element-content">Alcalá, Pablo</span>
-                    </div>
-                    <div class="source-element">
-                        <span class="source-element-tag">Type:</span>
-                        <span class="source-element-content">Journalism</span>
-                        <span class="source-element-content">Periodismo</span>
-                    </div>
-                    <div class="source-element">
-                        <span class="source-element-tag">Subject:</span>
-                        <span class="source-element-content">Photography, News, Media outlet, Lexington</span>
-                        <span class="source-element-content">Fotografía, Medios</span>
-                    </div>
-                    <div class="source-element">
-                        <span class="source-element-tag">Langauge:</span>
-                        <span class="source-element-content">English</span>
-                        <span class="source-element-content">Español</span>
-                    </div>
-                    <div class="source-element">
-                        <span class="source-element-tag">Citation:</span>
-                        <span class="source-element-content">Alcalá, Pablo. "Nuestro Kentucky - A Voice for the People." Lexington Herald-Leader, Final ed., 7 Dec. 2005, p. D1.</span>
-                    </div>
-                    <div class="source-url"><a href="https://infoweb-newsbank-com.ezproxy.uky.edu/apps/news/document-view?p=WORLDNEWS&t=favorite%3A114CE9E7%21Lexington%20Herald-Leader%20Historical%20and%20Current&sort=_rank_%3AD&maxresults=20&f=advanced&val-base-0=Latino%20businesses&fld-base-0=alltext&docref=news/10E5FC2A07E8B438#copy" target="_blank" rel="noopener noreferrer">View Source</a></div>
-                </div>
-            </div>
+            <p id="search-summary">Loading</p>
             
-
+            <div id="sources-display"></div>
+           
+            <div id="loader">
+                <div class="loader"></div>
             </div>
         </section>
   
-      
     </main>
 
     <footer id="primary-footer"></footer>
 
-    <script src="components/source-accordion.js"></script>
+    <script src="apps/sources-api.js"></script>
 
     <script src="components/primary-header.js"></script>
     <script src="components/primary-footer.js"></script>
