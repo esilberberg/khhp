@@ -1,5 +1,5 @@
 const baseURL = window.location.origin;
-const searchURL = `${baseURL}/sources.html?`;
+const searchURL = `${baseURL}/khhp/sources.html?`; /* Dont forget to change when site goes live! */
 
 const indexSearchBtn = document.getElementById('homepage-search-btn');
 const indexSearchInput = document.getElementById('homepage-search-input');
