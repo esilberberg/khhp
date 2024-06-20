@@ -105,28 +105,28 @@ function displayData(data, queryTerms) {
     let formatTerm = ''
     switch (selectedFormat) {
         case "1":
-            formatTerm = 'audio';
+            formatTerm = ' in audio';
             break;
         case "2":
-            formatTerm = 'events';
+            formatTerm = ' in events';
             break;
         case "3":
-            formatTerm = 'images';
+            formatTerm = ' in images';
             break;
         case "4":
-            formatTerm = 'journalism';
+            formatTerm = ' in journalism';
             break;
         case "5":
-            formatTerm = 'reports';
+            formatTerm = ' in reports';
             break;
         case "6":
-            formatTerm = 'research';
+            formatTerm = ' in research';
             break;
         case "7":
-            formatTerm = 'video';
+            formatTerm = ' in video';
             break;
         case "8":
-            formatTerm = 'websites';
+            formatTerm = ' in websites';
             break;
         default:
             formatTerm = '';
@@ -135,7 +135,7 @@ function displayData(data, queryTerms) {
     let baseSummary; // Declare baseSummary outside
 
     if (queryTerms !== '') {
-        baseSummary = `A search for ${queryTerms} in ${formatTerm}`;
+        baseSummary = `A search for ${queryTerms}${formatTerm}`;
     } else {
         baseSummary = `A search in ${formatTerm}`;
     }
@@ -206,7 +206,7 @@ function displayData(data, queryTerms) {
                     </div>
                     <div class="source-element">
                         <span class="source-element-tag">Citation:</span>
-                        <span class="source-element-content">Alcalá, Pablo. "Nuestro Kentucky - A Voice for the People." Lexington Herald-Leader, Final ed., 7 Dec. 2005, p. D1.</span>
+                        <span class="source-element-content">${object.Citation}</span>
                     </div>
                     <div class="source-url"><a href="${object.URL}" target="_blank" rel="noopener noreferrer">View Source <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
                 </div>
