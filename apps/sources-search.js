@@ -1,3 +1,4 @@
+// Define API endpoint and DOM elements
 const googleSheet = 'https://script.google.com/macros/s/AKfycbxg9B8IRwd6a-BQiykjFq6wz1PmoBU33CmexQ_Fy9SWuflFudGa99-5jFGNDw8_XXYD1A/exec'
 const display = document.getElementById('sources-display');
 const input = document.getElementById('sources-search-input');
@@ -7,15 +8,23 @@ const searchSummary = document.getElementById('search-summary');
 const formatSelector = document.getElementById('format-selector');
 const loader = document.getElementById('loader');
 
+// Get search terms from URL and display in search bar
+const searchURL = window.location.href;
+const searchParams = new URL(searchURL).searchParams;
+const indexURLSearchTerms = new URLSearchParams(searchParams).values();
+const indexSearchTermsArray = Array.from(indexURLSearchTerms); 
+const indexSearchTerms = indexSearchTermsArray.join(' ');
+input.value = indexSearchTerms;
+
 function removeDiacritics(str) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
   
-  refreshBtn.addEventListener('click', () => {
-    input.value = '';
-    formatSelector.selectedIndex = 0;
-    runSearch();
-  });
+refreshBtn.addEventListener('click', () => {
+  input.value = '';
+  formatSelector.selectedIndex = 0;
+  runSearch();
+});
 
 let apiData = [];
 
@@ -49,11 +58,7 @@ function filterData(query, format) {
     formatFilterData = apiData.filter((item) => item.Type === 'Video');
   }  else if (format === 8) {
     formatFilterData = apiData.filter((item) => item.Type === 'Website');
-  }   
-  
-  
-  
-  else {
+  }  else {
     formatFilterData = apiData;
   }
 
@@ -83,14 +88,20 @@ function runSearch() {
     const searchTerms = input.value.trim();
     const selectedFormat = formatSelector.selectedIndex;
     filterData(searchTerms, selectedFormat);
-  }
-  searchBtn.addEventListener('click', runSearch);
-  input.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-      runSearch();
-    }
-  });
 
+    // Update URL with search query
+    const newURL = new URL(window.location.href);
+    newURL.searchParams.set('q', searchTerms);
+    window.history.pushState(null, '', newURL);
+};
+
+// Event listeners for search bar
+searchBtn.addEventListener('click', runSearch);
+input.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        runSearch();
+    }
+});
 
 
 function displayData(data, queryTerms) {
