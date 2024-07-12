@@ -440,6 +440,7 @@ input:focus {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    text-align: center;
   }
 
  #contributors {
@@ -707,7 +708,54 @@ input:focus {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/*  HELP  */
 
+.help-display {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.help-accordion {
+    background-color: #eee;
+    color: black;
+    cursor: pointer;
+    padding: 16px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    transition: 0.4s;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  .help-active, .help-accordion:hover {
+    background-color: var(--highlight);
+  }
+  
+  .help-accordion-panel a {
+    color: var(--jade);
+  }
+  .help-accordion-panel a:hover {
+    color: var(--highlight);
+  }
+
+  .help-accordion-panel {
+    margin: 10px 0;
+    padding: 0 18px;
+    background-color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  .help-accordion-panel p {
+    padding: 15px 0;
+  }
+  .help-accordion-panel ul {
+    padding: 0 0 10px 40px;
+  }
 
 /* PRIMARY FOOTER */
 #primary-footer {

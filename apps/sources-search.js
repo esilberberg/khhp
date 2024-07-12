@@ -116,28 +116,28 @@ function displayData(data, queryTerms) {
     let formatTerm = ''
     switch (selectedFormat) {
         case "1":
-            formatTerm = ' in audio';
+            formatTerm = ' in Audio';
             break;
         case "2":
-            formatTerm = ' in events';
+            formatTerm = ' in Events';
             break;
         case "3":
-            formatTerm = ' in images';
+            formatTerm = ' in Images';
             break;
         case "4":
-            formatTerm = ' in journalism';
+            formatTerm = ' in Journalism';
             break;
         case "5":
-            formatTerm = ' in reports';
+            formatTerm = ' in Reports';
             break;
         case "6":
-            formatTerm = ' in research';
+            formatTerm = ' in Research';
             break;
         case "7":
-            formatTerm = ' in video';
+            formatTerm = ' in Video';
             break;
         case "8":
-            formatTerm = ' in websites';
+            formatTerm = ' in Websites';
             break;
         default:
             formatTerm = '';
@@ -146,9 +146,9 @@ function displayData(data, queryTerms) {
     let baseSummary; // Declare baseSummary outside
 
     if (queryTerms !== '') {
-        baseSummary = `A search for ${queryTerms}${formatTerm}`;
+        baseSummary = `A search for "${queryTerms}"${formatTerm}`;
     } else {
-        baseSummary = `A search in ${formatTerm}`;
+        baseSummary = `A search ${formatTerm}`;
     }
     
     if (data.length === 1) {
