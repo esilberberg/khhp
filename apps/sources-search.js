@@ -212,7 +212,7 @@ function displayData(data, queryTerms) {
                         <span class="source-element-content">${arrayOfTemas.map(tema => `<button class="subject-tag">${tema}</button>`).join(', ')}</span>
                     </div>
                     <div class="source-element">
-                        <span class="source-element-tag">Langauge:</span>
+                        <span class="source-element-tag">Language:</span>
                         <span class="source-element-content">${arrayOfLanguages.map(language => `<button class="subject-tag">${language}</button>`).join(', ')}</span>
                     </div>
                     <div class="source-element">
