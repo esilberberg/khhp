@@ -51,7 +51,7 @@ function filterData(query, format) {
   }  else if (format === 4) {
     formatFilterData = apiData.filter((item) => item.Type === 'Journalism');
   }  else if (format === 5) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Report');
+    formatFilterData = apiData.filter((item) => item.Type === 'Reports');
   }  else if (format === 6) {
     formatFilterData = apiData.filter((item) => item.Type === 'Research');
   }  else if (format === 7) {
