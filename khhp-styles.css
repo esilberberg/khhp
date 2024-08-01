@@ -348,7 +348,7 @@ input:focus {
 
 /* ABOUT */
 .about-content {
-    max-width: 900px;
+    max-width: 700px;
     margin: 2rem auto 6rem auto;
     padding: 0 1rem;
 }
@@ -356,6 +356,7 @@ input:focus {
 .about-content p { 
     font-weight: 200;
     padding-bottom: 1rem;
+    line-height: 1.6;
 }
 
 .about-content h2 {
@@ -681,7 +682,7 @@ input:focus {
 /*  HELP  */
 
 .help-display {
-    max-width: 1200px;
+    max-width: 700px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
@@ -722,9 +723,13 @@ input:focus {
   }
   .help-accordion-panel p {
     padding: 15px 0;
+    font-weight: 200;
+    line-height: 1.6;
   }
   .help-accordion-panel ul {
     padding: 0 0 10px 40px;
+    font-weight: 200;
+    line-height: 1.6;
   }
 
 /* PRIMARY FOOTER */
