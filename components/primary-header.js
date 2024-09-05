@@ -4,25 +4,25 @@ const headerContent = `
 <div class="header-content">
 <a href="index.html" class="nav-logo"><img src="media/khhp-logo.png" alt="KHHP logo" class="nav-logo-img"></a>
 <div class="header-right">
-    <div class="toggle-languages">
-        <p><span class="lang-btn"><a href="#">ES</a></span> / <span class="lang-btn"><a href="#">EN</a></span></p>
+    <div class="toggle-languages" id="language-navbar">
+        <span class="lang-btn"><a href="" data-lang="es" class="lang-link" aria-label="Español" lang="es">ES</a></span> / <span class="lang-btn"><a href="" data-lang="en" class="lang-link lang-link-active" aria-label="English" lang="en">EN</a></span>
     </div>
     <nav class="top-navigation">
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link" id="nav-home">Home</a>
             </li>
             <li class="nav-item">
-                <a href="about.html" class="nav-link">About</a>
+                <a href="about.html" class="nav-link" id="nav-about">About</a>
             </li>
             <li class="nav-item">
-                <a href="sources.html" class="nav-link">Sources</a>
+                <a href="sources.html" class="nav-link" id="nav-sources">Sources</a>
             </li>
             <li class="nav-item">
-                <a href="stories.html" class="nav-link">Stories</a>
+                <a href="stories.html" class="nav-link" id="nav-stories">Stories</a>
             </li>
             <li class="nav-item">
-                <a href="help.html" class="nav-link">Help</a>
+                <a href="help.html" class="nav-link" id="nav-help">Help</a>
             </li>
         </ul>
         <div class="top-navigation-hamburger">
