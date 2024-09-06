@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const about2 = document.getElementById('about-2');
     const about3 = document.getElementById('about-3');
     const about4 = document.getElementById('about-4');
+    const contactHeading = document.getElementById('contact-us-heading');
+    const contact1 = document.getElementById('contact-1');
+    const contact2 = document.getElementById('contact-2');
+    const collabHeading = document.getElementById('collaborating-heading');
+    
+
 
     if (storedLanguage) {
         updateContentLanguage(storedLanguage);
@@ -22,6 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         about2: 'The project began in Fall 2021 as a collaboration between three faculty members from the University of Kentucky: Ruth Brown and Yanira Paz from the Department of Hispanic Studies and Taylor Leigh from UK Libraries. Our initial goal was to create a website to consolidate our existing research and oral history projects, each of which focused in some way on the history and culture of Hispanic peoples and communities in Kentucky.',
                         about3: 'Currently, the project is focused on developing this website as a digital space to collect, preserve, and share existing written, visual, and audio sources that document and celebrate the histories and cultures of Hispanic people and communities in Kentucky. In the future, we hope to provide information about and help promote cultural activities and events in the community, relevant public/private initiatives and organizations, and to also develop new oral history, research, and creative projects.',
                         about4: 'To help grow the site and better represent the diverse experiences and histories of Hispanic peoples and communities in Kentucky, we welcome community contributions in the form of short blog articles, research, video content, oral histories, visual art, and other original works.',
+                        contactHeading: 'Contact Us',
+                        contact1: 'For general questions, comments, or submission inquiries, please email info@khhp.org',
+                        contact2: 'You are also welcome to reach out to our administrative team directly. Note, questions about the website are best addressed to Ruth Brown. Taylor Leigh can help with questions related to finding sources or conducting research at UK Libraries.',
+                        collabHeading: 'Collaborating Partners',
                     },
                     es: {
                         aboutHeading: '¿QUÉ ES EL KENTUCKY HISPANIC HERITAGE PROJECT?',
@@ -29,6 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         about2:'Este proyecto empezó en el otoño de 2021 como una colaboración entre tres miembros del profesorado de la Universidad de Kentucky: Ruth Brown y Yanira Paz del Departamento de Estudios HIspanos [Department of Hispanic Studies] y Taylor Leigh de la Biblioteca de la misma universidad [UK Libraries]. Nuestra meta inicial era crear un sitio web para consolidar nuestra investigación existente y proyectos de historia oral, cada uno de los cuales se enfocaba de algún modo en la historia y la cultura de personas y comunidades hispanas en Kentucky.',
                         about3:'Actualmente, el proyecto se centra en desarrollar este sitio web como un espacio digital para recopilar, preservar y compartir fuentes existentes escritas, y audiovisuales que documentan y celebran las historias y culturas de personas y comunidades hispanas en Kentucky. En el futuro, esperamos proveer información sobre y ayudar a promocionar actividades y eventos culturales en la comunidad, iniciativas y organizaciones públicas y privadas relevantes y también desarrollar nueva historia oral, investigación y proyectos creativos.',
                         about4:'Para ayudarnos a expandir el sitio y representar mejor las diversas experiencias e historias de las personas y comunidades hispanas en Kentucky, acogemos con agrado contribuciones comunitarias, tales como artículos cortos en forma de blog, trabajos de investigación, contenido de video, historias orales, arte visual y otras obras originales.',
+                        contactHeading: 'Contáctenos',
+                        contact1: 'Para preguntas generales, comentarios, o sobre envíos, favor de enviar un correo electrónico a info@khhp.org',
+                        contact2: 'También les  invitamos a contactar a nuestro equipo de desarrollo directamente. Preguntas sobre el sitio web es mejor dirigirlas a Ruth Brown. Taylor Leigh puede ayudar con lo relacionado a la ubicación de las fuentes o a cómo hacer investigación en las bibliotecas de la Universidad de Kentucky (UK Libraries).',
+                        collabHeading: 'Socios colaboradores',
                     }
                 };
         aboutHeading.textContent = translations[language].aboutHeading
@@ -36,6 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
         about2.textContent = translations[language].about2
         about3.textContent = translations[language].about3
         about4.textContent = translations[language].about4
+        contactHeading.textContent = translations[language].contactHeading
+        contact1.textContent = translations[language].contact1
+        contact2.textContent = translations[language].contact2
+        collabHeading.textContent = translations[language].collabHeading
     }
 
     languageNavbar.addEventListener('click', function (event) {

@@ -717,15 +717,16 @@ input:focus {
     padding: 0 18px;
     background-color: white;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 200;
+    line-height: 1.6;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
   }
   .help-accordion-panel p {
     padding: 15px 0;
-    font-weight: 200;
-    line-height: 1.6;
   }
+  
   .help-accordion-panel ul {
     padding: 0 0 10px 40px;
     font-weight: 200;
