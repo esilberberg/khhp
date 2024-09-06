@@ -23,19 +23,19 @@
     
     <main>
         <section class="page-heading">
-            <h1>Stories</h1>
+            <h1 id="stories-heading">Stories</h1>
         </section>
         <section class="stories">
             <div class="story-content">
-                <h2 class="story-content-heading"><i class="fa-solid fa-microphone-lines"></i> Oral Histories</h2>
+                <h2 class="story-content-heading" id="oral-hist-heading"><i class="fa-solid fa-microphone-lines"></i> Oral Histories</h2>
                 <div id="oral-histories-display"></div>
             </div>
             <div class="story-content">
-                <h2 class="story-content-heading"><i class="fa-solid fa-square-rss"></i> Recent Blog Posts</h2>
+                <h2 class="story-content-heading" id="blog-heading"><i class="fa-solid fa-square-rss"></i> Recent Blog Posts</h2>
                 <div id="blog-display">
                     <div class="blog-loader" id="blog-loader"></div>
                 </div>
-                <p class="read-more"><a href="https://khhp.createuky.net/recent-posts/" target="_blank" rel="noopener noreferrer">Read more <i class="fa-solid fa-arrow-right-long"></i></a></p>
+                <p class="read-more"><a href="https://khhp.createuky.net/recent-posts/" target="_blank" rel="noopener noreferrer" ><span id="read-more">Read more</span> <i class="fa-solid fa-arrow-right-long"></i></a></p>
             </div>
         </section>
     </main>
@@ -44,6 +44,8 @@
 
     <footer id="primary-footer"></footer>
 
+    <script src="translation/stories.js"></script>
+    <script src="translation/navbar.js"></script>
     <script src="components/oral-histories.js"></script>
     <script src="apps/wp-blog-api.js"></script>
 

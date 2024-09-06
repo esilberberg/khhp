@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const languageNavbar = document.getElementById('language-navbar');
     const storedLanguage = localStorage.getItem('khhpLanguagePreference');
 
-    // Aboutpage
+    // About page
     const aboutHeading = document.getElementById('about-heading');
     const about1 = document.getElementById('about-1');
     const about2 = document.getElementById('about-2');

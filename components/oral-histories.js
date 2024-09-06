@@ -9,11 +9,6 @@ const oralHistories = [
         summary: "A partnership between Dr. Taylor Leigh and the Louie B. Nunn Center for Oral History, “Apoyo KY: Supporting Hispanic/Latinx Communities in Kentucky” is an oral history series featuring individuals who work with and support Hispanic/Latinx communities in Kentucky. Each interview covers the interviewee’s life and work, as well as the impact of the COVID pandemic.",
         url: "https://kentuckyoralhistory.org/ark:/16417/xt758x7znl696",
     },
-    {
-        title: "Bluegrass & Birria",
-        summary: "This collection of interviews with Mexican restaurant owners from Kentucky was created through the Southern Foodways Alliance oral history program, which documents life stories from the American South.",
-        url: "https://www.southernfoodways.org/oral-history/bluegrass-and-birria/",
-    }
 ];
 
 const oralHistoriesDisplay = document.getElementById('oral-histories-display');
