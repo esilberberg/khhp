@@ -202,17 +202,17 @@ function displayData(data, queryTerms) {
                         <span class="source-element-content">${object.Year}</span>
                     </div>
                     <div class="source-element">
-                        <span class="source-element-tag">Type:</span>
+                        <span class="source-element-tag">Type/Tipo:</span>
                         <span class="source-element-content">${arrayOfTypes.map(type => `<button class="subject-tag">${type}</button>`).join(', ')}</span>
                         <span class="source-element-content">${arrayOfTipos.map(tipo => `<button class="subject-tag">${tipo}</button>`).join(', ')}</span>
                     </div>
                     <div class="source-element">
-                        <span class="source-element-tag">Subject:</span>
+                        <span class="source-element-tag">Subject/Tema:</span>
                         <span class="source-element-content">${arrayOfSubjects.map(subject => `<button class="subject-tag">${subject}</button>`).join(', ')}</span>
                         <span class="source-element-content">${arrayOfTemas.map(tema => `<button class="subject-tag">${tema}</button>`).join(', ')}</span>
                     </div>
                     <div class="source-element">
-                        <span class="source-element-tag">Language:</span>
+                        <span class="source-element-tag">Language/Idioma:</span>
                         <span class="source-element-content">${arrayOfLanguages.map(language => `<button class="subject-tag">${language}</button>`).join(', ')}</span>
                     </div>
                     <div class="source-element">
