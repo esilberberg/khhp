@@ -24,7 +24,7 @@
     <main>
         <section class="page-heading">
             <h1 id="sources-heading-1">Sources</h1>
-            <h2 id="sources-heading-2">Search our collection of materials</h2>
+            <h2 id="sources-heading-2">Browse our collection of materials</h2>
         </section>
         <section class="sources-search-widget">
             <select name="format" id="format-selector" title="Select Format">
@@ -41,21 +41,98 @@
             <input id="sources-search-input" autocomplete="off" type="text"  placeholder="Search...">
             <button id="sources-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
             <button id="refresh-btn" title="Refresh"><i class="fa-solid fa-rotate-left"></i></button>
+            <button id="help-btn" title="Help"><i class="fa-solid fa-question"></i></button>
         </section>
+        <div class="sources-content">
+            <section class="about-sources" id="about-sources">
+                <div class="about-sources-header">
+                    <h3 class="about-sources-title">About</h3>
+                    <button id="toggle-about-btn" title="Toggle About Sidebar" class="toggle-btn">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                </div>
+                <div class="about-sources-panel" id="about-sources-panel">
+                    <p class="about-sources-text">
+                        Browse our current collection by source type or keyword to tailor the search to your interests. For best results, start your search with just one keyword. Then, click on the title of any source to continue searching for related materials.
+                    </p>
+                    <h4 class="about-sources-subtitle">Access Sources</h4>
+                    <p class="about-sources-text">Unfortunately, due to copyright restrictions, KHHP cannot provide direct access to the full text of every source. Wherever possible, a link is provided in the source entry. In most cases, that link goes to a bibliographic record in InfoKat, a library database at the University of Kentucky. Community members who are not affiliated with the University of Kentucky can use the available bibliographic details to request the source from their local public library. If you need help accessing a particular source, contact the KHHP development team at  KYHispanicHeritageProject@gmail.com</p>
+                </div>
+            </section>
+            <section id="sources">
+                <p id="search-summary">Loading</p>
 
-        <section id="sources">
-            <p id="search-summary">Loading</p>
+                <label for="sort-selector">Sort by . . . </label>
+                <select name="sort" id="sort-selector" title="Sort by">
+                    <option value="title">Title</option>
+                    <option value="date">Date-newest</option>
+                </select>
+                
+                <div id="sources-display"></div>
             
-            <div id="sources-display"></div>
-           
-            <div id="loader">
-                <div class="loader"></div>
+                <div id="loader">
+                    <div class="loader"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Modal content -->
+        <div id="sources-modal">
+            <div id="sources-modal-content">
+                <span class="close">&times;</span>
+                <h3>Help</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper augue vitae felis iaculis commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas eleifend felis et tristique aliquam. Maecenas faucibus lobortis lectus in rutrum. In eros orci, scelerisque volutpat pulvinar eu, lobortis at diam.</p>
             </div>
-        </section>
+        </div>
+        
+     
+
+</div>
   
     </main>
 
     <footer id="primary-footer"></footer>
+<script>
+// Modal functionality
+const modal = document.getElementById("sources-modal");
+const btn = document.getElementById("help-btn");
+const span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+<script>
+const aboutSources = document.getElementById('about-sources');
+const toggleBtn = document.getElementById('toggle-about-btn');
+
+if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+        aboutSources.classList.toggle('collapsed');
+    });
+}
+
+
+function setInitialSidebarState() {
+    if (window.innerWidth <= 900) {
+        aboutSources.classList.add('collapsed');
+    } else {
+        aboutSources.classList.remove('collapsed');
+    }
+}
+
+window.addEventListener('load', setInitialSidebarState);
+window.addEventListener('resize', setInitialSidebarState);
+</script>
 
     <script src="translation/sources.js"></script>
     <script src="translation/navbar.js"></script>

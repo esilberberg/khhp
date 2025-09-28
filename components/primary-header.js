@@ -13,16 +13,13 @@ const headerContent = `
                 <a href="index.html" class="nav-link" id="nav-home">Home</a>
             </li>
             <li class="nav-item">
-                <a href="about.html" class="nav-link" id="nav-about">About</a>
-            </li>
-            <li class="nav-item">
                 <a href="sources.html" class="nav-link" id="nav-sources">Sources</a>
             </li>
             <li class="nav-item">
                 <a href="stories.html" class="nav-link" id="nav-stories">Stories</a>
             </li>
             <li class="nav-item">
-                <a href="help.html" class="nav-link" id="nav-help">Help</a>
+                <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
             </li>
         </ul>
         <div class="top-navigation-hamburger">

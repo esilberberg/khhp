@@ -47,11 +47,11 @@ function filterData(query, format) {
   } else if (format === 2) {
     formatFilterData = apiData.filter((item) => item.Type === 'Event');
   } else if (format === 3) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Images');
+    formatFilterData = apiData.filter((item) => item.Type === 'Image');
   }  else if (format === 4) {
     formatFilterData = apiData.filter((item) => item.Type === 'Journalism');
   }  else if (format === 5) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Reports');
+    formatFilterData = apiData.filter((item) => item.Type === 'Report');
   }  else if (format === 6) {
     formatFilterData = apiData.filter((item) => item.Type === 'Research');
   }  else if (format === 7) {
@@ -106,7 +106,21 @@ input.addEventListener('keypress', (event) => {
 
 function displayData(data, queryTerms) {
     loader.style.display = 'none';
-    data.sort((a, b) => a.Title.localeCompare(b.Title));
+
+    const sortSelector = document.getElementById('sort-selector');
+    const sortBy = sortSelector.value;
+    if (sortBy === 'title') {
+            // Sort A-Z by Title (default from your original code)
+            data.sort((a, b) => a.Title.localeCompare(b.Title));
+        } else if (sortBy === 'date') {
+            // Sort by Year, descending (most recent to oldest)
+            // Convert year to a number for reliable sorting. Assuming object.Year is a string.
+            data.sort((a, b) => {
+                const yearA = parseInt(a.Year, 10) || 0; // Use 0 if parsing fails
+                const yearB = parseInt(b.Year, 10) || 0; // Use 0 if parsing fails
+                return yearB - yearA; // b - a for descending order
+            });
+    }
     
     if (typeof queryTerms === 'number' || typeof queryTerms === 'undefined') {
         queryTerms = '';
@@ -151,12 +165,14 @@ function displayData(data, queryTerms) {
         baseSummary = `A search ${formatTerm}`;
     }
     
-    if (data.length === 1) {
-      searchSummaryMsg = `${baseSummary} returned ${data.length} result.`
+    if (data.length === 0) {
+      searchSummaryMsg = `${baseSummary} returned ${data.length} results. <br>  Try again with single keywords such as Bluegrass, Cuba, festival, youth, migration, or food.`;
+    } else if (data.length === 1) {
+      searchSummaryMsg = `${baseSummary} returned ${data.length} result.`;
     } else if (data.length < apiData.length) {
-      searchSummaryMsg = `${baseSummary} returned ${data.length} results.`
+      searchSummaryMsg = `${baseSummary} returned ${data.length} results.`;
     } else {
-      searchSummaryMsg = `Showing all ${data.length} results.`
+      searchSummaryMsg = `Showing all ${data.length} results.`;
     }
   
     searchSummary.innerHTML = searchSummaryMsg;
@@ -203,17 +219,18 @@ function displayData(data, queryTerms) {
                     </div>
                     <div class="source-element">
                         <span class="source-element-tag">Type/Tipo:</span>
-                        <span class="source-element-content">${arrayOfTypes.map(type => `<button class="subject-tag">${type}</button>`).join(', ')}</span>
-                        <span class="source-element-content">${arrayOfTipos.map(tipo => `<button class="subject-tag">${tipo}</button>`).join(', ')}</span>
+                        <span class="source-element-content">${arrayOfTypes.map(type => `<button class="subject-tag">${type}</button>`).join('')}</span>
+                        <span class="source-element-content">${arrayOfTipos.map(tipo => `<button class="subject-tag">${tipo}</button>`).join('')}</span>
                     </div>
                     <div class="source-element">
                         <span class="source-element-tag">Subject/Tema:</span>
-                        <span class="source-element-content">${arrayOfSubjects.map(subject => `<button class="subject-tag">${subject}</button>`).join(', ')}</span>
-                        <span class="source-element-content">${arrayOfTemas.map(tema => `<button class="subject-tag">${tema}</button>`).join(', ')}</span>
+                        <span class="source-element-content">${arrayOfSubjects.map(subject => `<button class="subject-tag">${subject}</button>`).join('')}</span>
+                        <br>
+                        <span class="source-element-content">${arrayOfTemas.map(tema => `<button class="subject-tag">${tema}</button>`).join('')}</span>
                     </div>
                     <div class="source-element">
                         <span class="source-element-tag">Language/Idioma:</span>
-                        <span class="source-element-content">${arrayOfLanguages.map(language => `<button class="subject-tag">${language}</button>`).join(', ')}</span>
+                        <span class="source-element-content">${arrayOfLanguages.map(language => `<button class="subject-tag">${language}</button>`).join('')}</span>
                     </div>
                     <div class="source-element">
                         <span class="source-element-tag">Citation:</span>
@@ -226,7 +243,9 @@ function displayData(data, queryTerms) {
     }).join('');
   
     display.innerHTML = dataDisplay;
-  
+    
+    sortSelector.addEventListener('change', runSearch);
+    
     // Add event listeners to all subject tags.
     document.querySelectorAll('.subject-tag').forEach(subjectLink => {
       subjectLink.addEventListener('click', () => {
