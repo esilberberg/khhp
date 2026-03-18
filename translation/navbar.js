@@ -5,10 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Navbar
     const navHome = document.getElementById('nav-home');
-    const navAbout = document.getElementById('nav-about');
     const navSources = document.getElementById('nav-sources');
     const navStories = document.getElementById('nav-stories');
-    const navHelp = document.getElementById('nav-help');
+    const navContact = document.getElementById('nav-contact');
 
     if (storedLanguage) {
         updateContentLanguage(storedLanguage);
@@ -18,24 +17,21 @@ document.addEventListener('DOMContentLoaded', function () {
         const translations = {
                     en: {
                         navHome: 'Home',
-                        navAbout: 'About',
                         navSources: 'Sources',
                         navStories: 'Stories',
-                        navHelp: 'Help',
+                        navContact: 'Contact',
                     },
                     es: {
                         navHome: 'Inicio',
-                        navAbout: 'Acerca de',
                         navSources: 'Fuentes',
                         navStories: 'Historias',
-                        navHelp: 'Ayuda',
+                        navContact: 'Contacto',
                     }
                 };
         navHome.textContent = translations[language].navHome;
-        navAbout.textContent = translations[language].navAbout;
         navSources.textContent = translations[language].navSources;
         navStories.textContent = translations[language].navStories;
-        navHelp.textContent = translations[language].navHelp;
+        navContact.textContent = translations[language].navContact;
     }
 
     languageNavbar.addEventListener('click', function (event) {

@@ -5,9 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Homepage
     const welcomeMsg = document.getElementById('welcome-msg');
-    const searchHeading = document.getElementById('search-heading');
     const homepageSearchInput = document.getElementById('homepage-search-input');
-    const readMore = document.getElementById('read-more');
 
     if (storedLanguage) {
         updateContentLanguage(storedLanguage);
@@ -17,21 +15,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const translations = {
                     en: {
                         welcomeMsg: 'Welcome to the Kentucky Hispanic Heritage Project, a digital space dedicated to the history, culture, achievements, and contemporary experience of people of Hispanic descent living in Kentucky.',
-                        searchHeading: 'Search sources',
-                        placeholder: 'Search...',
-                        readMore: 'Read more',
+                        
+                        placeholder: 'Search sources...',
+                        
                     },
                     es: {
                         welcomeMsg: 'Bienvenidos/as al Kentucky Hispanic Heritage Project (KHHP por sus siglas en inglés), un espacio digital dedicado a la historia, los logros y la experiencia contemporánea de las personas de herencia hispana que viven en Kentucky',
-                        searchHeading: 'Explorar fuentes',
-                        placeholder: 'Buscar...',
-                        readMore: 'Leer más',
+                        
+                        placeholder: 'Explorar fuentes...',
+                        
                     }
                 };
         welcomeMsg.textContent = translations[language].welcomeMsg;
-        searchHeading.textContent = translations[language].searchHeading;
         homepageSearchInput.placeholder = translations[language].placeholder;
-        readMore.textContent = translations[language].readMore;
     }
 
     languageNavbar.addEventListener('click', function (event) {
