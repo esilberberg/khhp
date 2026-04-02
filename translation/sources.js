@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const formatSelector = document.getElementById('format-selector');
     const helpModalHeading = document.getElementById('help-modal-heading');
     const helpModalText = document.getElementById('help-modal-text');
+    const sortLabel = document.getElementById('sort-label');
+    const sortSelectorTitle = document.getElementById('sort-selector-title');
+    const sortSelectorDate = document.getElementById('sort-selector-date');
 
     // Guard clause: stop execution if we aren't on the Sources page
     if (!sourcesHeading1) return;
@@ -32,6 +35,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     0: "All", 1: "Audio", 2: "Events", 3: "Images", 4: "Journalism", 
                     5: "Reports", 6: "Research", 7: "Video", 8: "Websites"
                 },
+                sortLabel: 'Sort by . . .',
+                sortSelectorTitle: 'Title',
+                sortSelectorDate: 'Date-newest',
                 aboutSourcesHeading: 'About',
                 aboutSourcesText: 'Browse our current collection by source type or keyword to tailor the search to your interests. For best results, start your search with just one keyword. Then, click on the title of any source to continue searching for related materials.',
                 accessSources: 'Access Sources',
@@ -47,6 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     0: "Todo", 1: "Audio", 2: "Eventos", 3: "Imágenes", 4: "Periodismo", 
                     5: "Informes", 6: "Investigación", 7: "Vídeo", 8: "Sitios web"
                 },
+                sortLabel: 'Ordenar por . . .',
+                sortSelectorTitle: 'Título',
+                sortSelectorDate: 'Fecha—más reciente',
                 aboutSourcesHeading: 'Sobre las fuentes',
                 aboutSourcesText: 'Explore nuestra colección según tipo de fuente o palabra clave con el fin de adaptar la búsqueda a sus intereses. Para obtener los mejores resultados, empiece la búsqueda con una sola palabra clave. Después, pulse en el título de cualquier fuente para seguir explorando materias relacionadas.',
                 accessSources: 'Acceder a las fuentes',
@@ -58,6 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Update elements
         sourcesHeading1.textContent = translations[language].sourcesHeading1;
+        sortLabel.textContent = translations[language].sortLabel;
+        sortSelectorTitle.textContent = translations[language].sortSelectorTitle;
+        sortSelectorDate.textContent = translations[language].sortSelectorDate;
         aboutSourcesHeading.textContent = translations[language].aboutSourcesHeading;
         aboutSourcesText.textContent = translations[language].aboutSourcesText;
         accessSources.textContent = translations[language].accessSources;

@@ -1,5 +1,4 @@
-// Define API endpoint and DOM elements
-const googleSheet = 'https://script.google.com/macros/s/AKfycbxg9B8IRwd6a-BQiykjFq6wz1PmoBU33CmexQ_Fy9SWuflFudGa99-5jFGNDw8_XXYD1A/exec'
+const googleSheet = 'https://script.google.com/macros/s/AKfycbxg9B8IRwd6a-BQiykjFq6wz1PmoBU33CmexQ_Fy9SWuflFudGa99-5jFGNDw8_XXYD1A/exec';
 const display = document.getElementById('sources-display');
 const input = document.getElementById('sources-search-input');
 const searchBtn = document.getElementById('sources-search-btn');
@@ -7,81 +6,63 @@ const refreshBtn = document.getElementById('refresh-btn');
 const searchSummary = document.getElementById('search-summary');
 const formatSelector = document.getElementById('format-selector');
 const loader = document.getElementById('loader');
+const sortSelector = document.getElementById('sort-selector');
 
-// Get search terms from URL and display in search bar
 const searchURL = window.location.href;
 const searchParams = new URL(searchURL).searchParams;
-const indexURLSearchTerms = new URLSearchParams(searchParams).values();
-const indexSearchTermsArray = Array.from(indexURLSearchTerms); 
-const indexSearchTerms = indexSearchTermsArray.join(' ');
+const indexSearchTerms = Array.from(searchParams.values()).join(' ');
 input.value = indexSearchTerms;
-
-function removeDiacritics(str) {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  }
-  
-refreshBtn.addEventListener('click', () => {
-  input.value = '';
-  formatSelector.selectedIndex = 0;
-  runSearch();
-});
 
 let apiData = [];
 
+function getCurrentLanguage() {
+    return localStorage.getItem('khhpLanguagePreference') || 'en';
+}
+
+function removeDiacritics(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 async function getData(url) {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    apiData = data;
-    filterData(input.value);
-  } catch (error) {
-    window.alert(error.message);
-  }
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        apiData = data;
+        filterData(input.value, formatSelector.selectedIndex);
+    } catch (error) {
+        console.error("Data fetch error:", error);
+    }
 }
 
 getData(googleSheet);
 
 function filterData(query, format) {
-  if (format === 1) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Audio');
-  } else if (format === 2) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Event');
-  } else if (format === 3) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Image');
-  }  else if (format === 4) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Journalism');
-  }  else if (format === 5) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Report');
-  }  else if (format === 6) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Research');
-  }  else if (format === 7) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Video');
-  }  else if (format === 8) {
-    formatFilterData = apiData.filter((item) => item.Type === 'Website');
-  }  else {
-    formatFilterData = apiData;
-  }
+    let formatFilterData;
+    const typeMapping = {
+        1: 'Audio', 2: 'Event', 3: 'Image', 4: 'Journalism',
+        5: 'Report', 6: 'Research', 7: 'Video', 8: 'Website'
+    };
 
-  if (query) {
-    const searchTerms = query.toLowerCase().split(/\s+/).map(term => removeDiacritics(term));
+    formatFilterData = typeMapping[format] 
+        ? apiData.filter((item) => item.Type === typeMapping[format]) 
+        : apiData;
 
-    const filteredData = formatFilterData.filter(allData => {
-      return searchTerms.every(term => {
-        return (
-          Object.values(allData).some(value => {
-            if (value && typeof value === 'string') {
-              return removeDiacritics(value.toLowerCase()).includes(term);
-            }
-            return false;
-          })
-        );
-      });
-    });
-
-    displayData(filteredData, query);
-  } else {
-    displayData(formatFilterData, format);
-  }
+    if (query) {
+        const searchTerms = query.toLowerCase().split(/\s+/).map(term => removeDiacritics(term));
+        const filteredData = formatFilterData.filter(allData => {
+            return searchTerms.every(term => {
+                return Object.values(allData).some(value => {
+                    if (value && typeof value === 'string') {
+                        return removeDiacritics(value.toLowerCase()).includes(term);
+                    }
+                    return false;
+                });
+            });
+        });
+        displayData(filteredData, query);
+    } else {
+        displayData(formatFilterData, query);
+    }
 }
 
 function runSearch() {
@@ -89,201 +70,126 @@ function runSearch() {
     const selectedFormat = formatSelector.selectedIndex;
     filterData(searchTerms, selectedFormat);
 
-    // Update URL with search query
     const newURL = new URL(window.location.href);
     newURL.searchParams.set('q', searchTerms);
     window.history.pushState(null, '', newURL);
-};
+}
 
-// Event listeners for search bar
 searchBtn.addEventListener('click', runSearch);
-input.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-        runSearch();
-    }
+refreshBtn.addEventListener('click', () => {
+    input.value = '';
+    formatSelector.selectedIndex = 0;
+    runSearch();
 });
-
+input.addEventListener('keypress', (e) => { if (e.key === 'Enter') runSearch(); });
+sortSelector.addEventListener('change', runSearch);
 
 function displayData(data, queryTerms) {
     loader.style.display = 'none';
-
-    const sortSelector = document.getElementById('sort-selector');
+    const lang = getCurrentLanguage();
     const sortBy = sortSelector.value;
-    if (sortBy === 'title') {
-            // Sort A-Z by Title (default)
-            data.sort((a, b) => a.Title.localeCompare(b.Title));
-        } else if (sortBy === 'date') {
-            // Sort by Year, descending (most recent to oldest)
-            // Convert year to a number for reliable sorting. Assuming object.Year is a string.
-            data.sort((a, b) => {
-                const yearA = parseInt(a.Year, 10) || 0; // Use 0 if parsing fails
-                const yearB = parseInt(b.Year, 10) || 0; // Use 0 if parsing fails
-                return yearB - yearA; // b - a for descending order
-            });
-    }
-    
-    if (typeof queryTerms === 'number' || typeof queryTerms === 'undefined') {
-        queryTerms = '';
-      }
 
-    const selectedFormat = formatSelector.value;
-    let formatTerm = ''
-    switch (selectedFormat) {
-        case "1":
-            formatTerm = ' in Audio';
-            break;
-        case "2":
-            formatTerm = ' in Events';
-            break;
-        case "3":
-            formatTerm = ' in Images';
-            break;
-        case "4":
-            formatTerm = ' in Journalism';
-            break;
-        case "5":
-            formatTerm = ' in Reports';
-            break;
-        case "6":
-            formatTerm = ' in Research';
-            break;
-        case "7":
-            formatTerm = ' in Video';
-            break;
-        case "8":
-            formatTerm = ' in Websites';
-            break;
-        default:
-            formatTerm = '';
-    }
-    
-    let baseSummary; // Declare baseSummary outside
-
-    if (queryTerms !== '') {
-        baseSummary = `A search for "${queryTerms}"${formatTerm}`;
-    } else {
-        baseSummary = `A search ${formatTerm}`;
-    }
-    
-    if (data.length === 0) {
-      searchSummaryMsg = `${baseSummary} returned ${data.length} results. <br>  Try again with single keywords such as Bluegrass, Cuba, festival, youth, migration, or food.`;
-    } else if (data.length === 1) {
-      searchSummaryMsg = `${baseSummary} returned ${data.length} result.`;
-    } else if (data.length < apiData.length) {
-      searchSummaryMsg = `${baseSummary} returned ${data.length} results.`;
-    } else {
-      searchSummaryMsg = `Showing all ${data.length} results.`;
-    }
-  
-    searchSummary.innerHTML = searchSummaryMsg;
-
-    let dataDisplay = data.map((object) => {
-
-// Customize type icons
-    const typeLabelDictionary = {
-        undefined: '<i class="fa-solid fa-file"></i>',
-        Audio: '<i title="Audio" class="fa-solid fa-file-audio"></i>',
-        Event: '<i title="Event" class="fa-solid fa-people-group"></i>',
-        Images: '<i title="Images" class="fa-solid fa-file-image"></i>',
-        Journalism: '<i title="Journalism" class="fa-solid fa-newspaper"></i>',
-        Report: '<i title="Report" class="fa-solid fa-file-contract"></i>',
-        Research: '<i title="Research" class="fa-solid fa-file-lines"></i>',
-        Video: '<i title="Video" class="fa-solid fa-file-video"></i>',
-        Website: '<i title="Website" class="fa-solid fa-globe"></i>'
+    const uiText = {
+        en: {
+            in: " in ", results: "results", result: "result", searchFor: "A search for",
+            search: "A search", showingAll: "Showing all", returned: "returned",
+            noResults: "Try again with single keywords such as Bluegrass, Cuba, festival, youth, migration, or food.",
+            formats: ["", "Audio", "Events", "Images", "Journalism", "Reports", "Research", "Video", "Websites"],
+            labels: { creator: "Creator", year: "Year", type: "Type", subject: "Subject", language: "Language", citation: "Citation", view: "View Source" }
+        },
+        es: {
+            in: " en ", results: "resultados", result: "resultado", searchFor: "Una búsqueda de",
+            search: "Una búsqueda", showingAll: "Mostrando todos los", returned: "devolvió",
+            noResults: "Inténtelo de nuevo con palabras clave únicas como Bluegrass, Cuba, festival, juventud, migración o comida.",
+            formats: ["", "Audio", "Eventos", "Imágenes", "Periodismo", "Informes", "Investigación", "Vídeo", "Sitios web"],
+            labels: { creator: "Creador", year: "Año", type: "Tipo", subject: "Tema", language: "Idioma", citation: "Cita", view: "Ver fuente" }
+        }
     };
 
-    let itemTypeLabel = typeLabelDictionary[object.Type] !== undefined ? typeLabelDictionary[object.Type] : '<i class="fa-solid fa-file"></i>';
-      
-      
-    const arrayOfTypes = object.Type.split(',');
-    const arrayOfTipos = object.Tipo.split(',');
-    const arrayOfSubjects = object.Subjects.split(',');
-    const arrayOfTemas = object.Temas.split(',');
-    const arrayOfLanguages = object.Languages.split(',');
-      
-  
-      return `
-       <div class="source-row-accordion">
-                <div class="source-type-icon">${itemTypeLabel}</div>
+    const t = uiText[lang];
+
+    if (sortBy === 'title') {
+        data.sort((a, b) => (a.Title || "").localeCompare(b.Title || ""));
+    } else if (sortBy === 'date') {
+        data.sort((a, b) => (parseInt(b.Year, 10) || 0) - (parseInt(a.Year, 10) || 0));
+    }
+
+    const selectedFormatIndex = formatSelector.selectedIndex;
+    const formatTerm = selectedFormatIndex > 0 ? `${t.in}${t.formats[selectedFormatIndex]}` : '';
+    
+    let searchSummaryMsg;
+    const cleanQuery = typeof queryTerms === 'string' ? queryTerms.trim() : '';
+    const baseSummary = cleanQuery !== '' ? `${t.searchFor} "${cleanQuery}"${formatTerm}` : `${t.search}${formatTerm}`;
+
+    if (data.length === 0) {
+        searchSummaryMsg = `${baseSummary} ${t.returned} 0 ${t.results}. <br> ${t.noResults}`;
+    } else {
+        const resWord = data.length === 1 ? t.result : t.results;
+        searchSummaryMsg = data.length < apiData.length 
+            ? `${baseSummary} ${t.returned} ${data.length} ${resWord}.`
+            : `${t.showingAll} ${data.length} ${resWord}.`;
+    }
+    searchSummary.innerHTML = searchSummaryMsg;
+
+    const typeIconDict = {
+        Audio: 'fa-file-audio', Event: 'fa-people-group', Images: 'fa-file-image',
+        Journalism: 'fa-newspaper', Report: 'fa-file-contract', Research: 'fa-file-lines',
+        Video: 'fa-file-video', Website: 'fa-globe'
+    };
+
+    display.innerHTML = data.map((object) => {
+        const iconClass = typeIconDict[object.Type] || 'fa-file';
+        const displayTypes = lang === 'en' ? (object.Type || "") : (object.Tipo || object.Type || "");
+        const displaySubjects = lang === 'en' ? (object.Subjects || "") : (object.Temas || object.Subjects || "");
+        const displayLangs = lang === 'en' ? (object.Languages || "") : (object.Idiomas || object.Languages || "");
+
+        return `
+            <div class="source-row-accordion">
+                <div class="source-type-icon"><i class="fa-solid ${iconClass}"></i></div>
                 <div class="source-title">${object.Title}</div>
             </div>
             <div class="source-row-panel">
                 <div class="source-row-panel-content">
-                    <div class="source-element">
-                        <span class="source-element-tag">Creator:</span>
-                        <span class="source-element-content">${object.Author}</span>
-                    </div>
-                    <div class="source-element">
-                        <span class="source-element-tag">Year:</span>
-                        <span class="source-element-content">${object.Year}</span>
-                    </div>
-                    <div class="source-element">
-                        <span class="source-element-tag">Type/Tipo:</span>
-                        <span class="source-element-content">${arrayOfTypes.map(type => `<button class="subject-tag">${type}</button>`).join('')}</span>
-                        <span class="source-element-content">${arrayOfTipos.map(tipo => `<button class="subject-tag">${tipo}</button>`).join('')}</span>
-                    </div>
-                    <div class="source-element">
-                        <span class="source-element-tag">Subject/Tema:</span>
-                        <span class="source-element-content">${arrayOfSubjects.map(subject => `<button class="subject-tag">${subject}</button>`).join('')}</span>
-                        <br>
-                        <span class="source-element-content">${arrayOfTemas.map(tema => `<button class="subject-tag">${tema}</button>`).join('')}</span>
-                    </div>
-                    <div class="source-element">
-                        <span class="source-element-tag">Language/Idioma:</span>
-                        <span class="source-element-content">${arrayOfLanguages.map(language => `<button class="subject-tag">${language}</button>`).join('')}</span>
-                    </div>
-                    <div class="source-element">
-                        <span class="source-element-tag">Citation:</span>
-                        <span class="source-element-content">${object.Citation}</span>
-                    </div>
-                    <div class="source-url"><a href="${object.URL}" target="_blank" rel="noopener noreferrer">View Source <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+                    <div class="source-element"><span class="source-element-tag">${t.labels.creator}:</span> <span class="source-element-content">${object.Author}</span></div>
+                    <div class="source-element"><span class="source-element-tag">${t.labels.year}:</span> <span class="source-element-content">${object.Year}</span></div>
+                    <div class="source-element"><span class="source-element-tag">${t.labels.type}:</span> <span class="source-element-content">${displayTypes.split(',').map(type => `<button class="subject-tag">${type.trim()}</button>`).join('')}</span></div>
+                    <div class="source-element"><span class="source-element-tag">${t.labels.subject}:</span> <span class="source-element-content">${displaySubjects.split(',').map(s => `<button class="subject-tag">${s.trim()}</button>`).join('')}</span></div>
+                    <div class="source-element"><span class="source-element-tag">${t.labels.language}:</span> <span class="source-element-content">${displayLangs.split(',').map(l => `<button class="subject-tag">${l.trim()}</button>`).join('')}</span></div>
+                    <div class="source-element"><span class="source-element-tag">${t.labels.citation}:</span> <span class="source-element-content">${object.Citation}</span></div>
+                    <div class="source-url"><a href="${object.URL}" target="_blank" rel="noopener noreferrer">${t.labels.view} <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
                 </div>
             </div>
-     `;
+        `;
     }).join('');
-  
-    display.innerHTML = dataDisplay;
-    
-    sortSelector.addEventListener('change', runSearch);
-    
-    // Add event listeners to all subject tags.
-    document.querySelectorAll('.subject-tag').forEach(subjectLink => {
-      subjectLink.addEventListener('click', () => {
-        subjectLinkGenerator(event, subjectLink);
-      });
-    });
-  
-    document.querySelectorAll('.language-tag').forEach(langLink => {
-      langLink.addEventListener('click', () => {
-        subjectLinkGenerator(event, langLink);
-      });
-    });
-  
-    // Add event listeners to all author links.
-    document.querySelectorAll('.author-name').forEach(authorLink => {
-      authorLink.addEventListener('click', () => {
-        subjectLinkGenerator(event, authorLink);
-      });
+
+    document.querySelectorAll('.subject-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+            input.value = tag.textContent;
+            runSearch();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     });
 
-    var acc = document.getElementsByClassName("source-row-accordion");
-    var i;
-    
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-          this.classList.toggle("active-source");
-          var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
-        }
-      });
+    const acc = document.getElementsByClassName("source-row-accordion");
+    for (let i = 0; i < acc.length; i++) {
+        acc[i].onclick = function() {
+            this.classList.toggle("active-source");
+            const panel = this.nextElementSibling;
+            panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
+        };
     }
-  };
-  
-  function subjectLinkGenerator(event, link) {
-    filterData(link.textContent);
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  }
+}
+
+function listenForLangChange() {
+    const nav = document.getElementById('language-navbar');
+    if (nav) {
+        nav.addEventListener('click', (e) => {
+            if (e.target.hasAttribute('data-lang')) {
+                setTimeout(runSearch, 150);
+            }
+        });
+    } else {
+        setTimeout(listenForLangChange, 500);
+    }
+}
+listenForLangChange();
