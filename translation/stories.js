@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Stories page
     const storiesHeading = document.getElementById('stories-heading');
+    const p1 = document.getElementById('p1');
+    const p2 = document.getElementById('p2');
     const oralHistHeading = document.getElementById('oral-hist-heading');
     const blogHeading = document.getElementById('blog-heading');
     const readMore = document.getElementById('read-more');
@@ -18,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const translations = {
                     en: {
                         storiesHeading: 'STORIES',
+                        p1: 'This page presents content produced and edited by the KHHP development team. The oral histories and blog articles offer detailed and personal interpretations of the history, culture, achievements, and contemporary experience of people of Hispanic descent living in Kentucky.',
+                        p2: 'Note that clicking on the links below will open different websites.',
                         oralHistHeading: 'Oral Histories',
                         blogHeading: 'Recent Blog Posts',
                         readMore: 'Read more',
@@ -30,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     es: {
                         storiesHeading: 'HISTORIAS',
+                        p1: 'Esta página presenta contenido producido y editado por el equipo de desarrollo de KHHP. Las historias orales y los artículos en forma de blog ofrecen interpretaciones detalladas y personales de la historia, los logros y la experiencia contemporánea de las personas de herencia hispana que viven en Kentucky.',
+                        p2: 'Tener en cuenta que al pulsar en los enlaces de abajo se abrirán distintos sitios web.',
                         oralHistHeading: 'Historias Orales',
                         blogHeading: 'Publicaciones Recientes en forma de blogs',
                         readMore: 'Leer más',
@@ -42,6 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 };
         storiesHeading.textContent = translations[language].storiesHeading;
+        p1.textContent = translations[language].p1;
+        p2.textContent = translations[language].p2;
         oralHistHeading.textContent = translations[language].oralHistHeading;
         blogHeading.textContent = translations[language].blogHeading;
         readMore.textContent = translations[language].readMore;

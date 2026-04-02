@@ -110,7 +110,7 @@ function displayData(data, queryTerms) {
     const sortSelector = document.getElementById('sort-selector');
     const sortBy = sortSelector.value;
     if (sortBy === 'title') {
-            // Sort A-Z by Title (default from your original code)
+            // Sort A-Z by Title (default)
             data.sort((a, b) => a.Title.localeCompare(b.Title));
         } else if (sortBy === 'date') {
             // Sort by Year, descending (most recent to oldest)

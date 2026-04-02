@@ -302,7 +302,9 @@ figcaption {
 }
 
 .contact-welcome {
-    flex: 1;                
+    flex: 1;
+    max-width: 600px;
+    margin: 0 auto;               
 }
 
 .contact-welcome p {
@@ -331,14 +333,11 @@ figcaption {
     }
 
     .contact-welcome {
-        text-align: left;      
+        text-align: left;
+        margin-top: 3rem;      
     }
 }
 
-.contact-welcome {
-    max-width: 600px;
-    margin: 3rem auto;
-}
 
 .contact-welcome >p{
     padding-bottom: 1rem;
